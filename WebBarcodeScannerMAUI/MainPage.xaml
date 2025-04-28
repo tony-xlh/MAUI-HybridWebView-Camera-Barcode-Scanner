@@ -2,11 +2,25 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="WebBarcodeScannerMAUI.MainPage">
-
-    <ScrollView>
-        <HybridWebView x:Name="hybridWebView" 
-                       RawMessageReceived="OnHybridWebViewRawMessageReceived"
-                       HybridRoot="" DefaultFile="index.html"/>
-    </ScrollView>
-
+    <Grid RowDefinitions="Auto,*"
+          ColumnDefinitions="*">
+        <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+            <Button Text="Start Scanning" 
+                Clicked="OnStartScanButtonClicked"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                />
+            <Button Text="Stop Scanning"
+                Clicked="OnStopScanButtonClicked"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                />
+        </StackLayout>
+        
+        <ScrollView Grid.Row="1">
+            <HybridWebView x:Name="hybridWebView" 
+           RawMessageReceived="OnHybridWebViewRawMessageReceived"
+           HybridRoot="" DefaultFile="index.html"/>
+        </ScrollView>
+    </Grid>
 </ContentPage>

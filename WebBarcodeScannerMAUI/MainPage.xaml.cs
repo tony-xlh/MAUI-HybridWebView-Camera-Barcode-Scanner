@@ -16,10 +16,20 @@ namespace WebBarcodeScannerMAUI
 
         private async void OnHybridWebViewRawMessageReceived(object sender, HybridWebViewRawMessageReceivedEventArgs e)
         {
-            //await DisplayAlert("Raw Message Received", e.Message, "OK");
             Debug.WriteLine(e.Message);
+            hybridWebView.SendRawMessage("stop");
+            await DisplayAlert("Barcode Results Received", e.Message, "OK");
+        }
+
+        private void OnStartScanButtonClicked(object sender, EventArgs args)
+        {
+            hybridWebView.SendRawMessage("start");
+            Debug.WriteLine("clicked");
+        }
+
+        private void OnStopScanButtonClicked(object sender, EventArgs args)
+        {
             hybridWebView.SendRawMessage("stop");
         }
     }
-
 }
