@@ -14,11 +14,14 @@ namespace WebBarcodeScannerMAUI
             PermissionStatus status = await Permissions.RequestAsync<Permissions.Camera>();
         }
 
-        private async void OnHybridWebViewRawMessageReceived(object sender, HybridWebViewRawMessageReceivedEventArgs e)
+        private void OnHybridWebViewRawMessageReceived(object sender, HybridWebViewRawMessageReceivedEventArgs e)
         {
             Debug.WriteLine(e.Message);
-            hybridWebView.SendRawMessage("stop");
-            await DisplayAlert("Barcode Results Received", e.Message, "OK");
+            MainThread.BeginInvokeOnMainThread(async () =>
+            {
+                hybridWebView.SendRawMessage("stop");
+                await DisplayAlert("Barcode Results Received", e.Message, "OK");
+            });
         }
 
         private void OnStartScanButtonClicked(object sender, EventArgs args)
