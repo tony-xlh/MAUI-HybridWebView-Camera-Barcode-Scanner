@@ -1,7 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
-#if ANDROID
-using WebBarcodeScannerMAUI.Platforms.Android;
-#endif
+
 namespace WebBarcodeScannerMAUI
 {
     public static class MauiProgram
@@ -14,7 +12,10 @@ namespace WebBarcodeScannerMAUI
                 .ConfigureMauiHandlers(handlers =>
                 {
 #if ANDROID
-                    handlers.AddHandler<HybridWebView, MyHybridWebViewHandler>();
+                    handlers.AddHandler<HybridWebView, WebBarcodeScannerMAUI.Platforms.Android.MyHybridWebViewHandler>();
+#endif
+#if IOS || MACCATALYST  
+                    handlers.AddHandler<HybridWebView, WebBarcodeScannerMAUI.Platforms.iOS.MyHybridWebViewHandler>();
 #endif
                 })
                 .ConfigureFonts(fonts =>
