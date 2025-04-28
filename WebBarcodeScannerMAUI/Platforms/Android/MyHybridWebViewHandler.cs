@@ -13,7 +13,9 @@ namespace WebBarcodeScannerMAUI.Platforms.Android
         protected override global::Android.Webkit.WebView CreatePlatformView()
         {
             var view = base.CreatePlatformView();
-            view.SetWebChromeClient(new MyWebChromeClient(this.Context));
+            view.Settings.MediaPlaybackRequiresUserGesture = false;
+            var client = new MyWebChromeClient(this.Context);
+            view.SetWebChromeClient(client);
             return view;
         }
     }
