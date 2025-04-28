@@ -14,8 +14,11 @@ namespace WebBarcodeScannerMAUI
 #if ANDROID
                     handlers.AddHandler<HybridWebView, WebBarcodeScannerMAUI.Platforms.Android.MyHybridWebViewHandler>();
 #endif
-#if IOS || MACCATALYST  
+#if IOS
                     handlers.AddHandler<HybridWebView, WebBarcodeScannerMAUI.Platforms.iOS.MyHybridWebViewHandler>();
+#endif
+#if MACCATALYST
+                    handlers.AddHandler<HybridWebView, WebBarcodeScannerMAUI.Platforms.MacCatalyst.MyHybridWebViewHandler>();
 #endif
                 })
                 .ConfigureFonts(fonts =>
