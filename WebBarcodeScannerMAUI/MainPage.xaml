@@ -4,7 +4,9 @@
              x:Class="WebBarcodeScannerMAUI.MainPage">
 
     <ScrollView>
-        <HybridWebView x:Name="hybridWebView" HybridRoot="" DefaultFile="index.html"/>
+        <HybridWebView x:Name="hybridWebView" 
+                       RawMessageReceived="OnHybridWebViewRawMessageReceived"
+                       HybridRoot="" DefaultFile="index.html"/>
     </ScrollView>
 
 </ContentPage>
